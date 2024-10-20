@@ -1,0 +1,30 @@
+﻿@model IEnumerable<FileModel>
+
+<h2>File Manager</h2>
+
+<form asp-action="Upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required />
+    <button type="submit">Upload</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Upload Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model)
+        {
+<tr>
+    <td>@file.FileName</td>
+    <td>@file.UploadDate</td>
+    <td>
+        <a asp-action="Download" asp-route-id="@file.Id">Download</a>
+        <a asp-action="Delete" asp-route-id="@file.Id">Delete</a>
+    </td>
+</tr>}
+    </tbody>
+</table>
